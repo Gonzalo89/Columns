@@ -1,6 +1,6 @@
 package modelo;
 
-public class ThreadBajarBloque extends Thread{//podria no ser necesario
+public class ThreadBajarBloque extends Thread{
 	private Juego juego;
 
 	public ThreadBajarBloque(Juego juego) {

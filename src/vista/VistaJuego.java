@@ -24,19 +24,29 @@ public class VistaJuego  extends JPanel{
 		KeyListener  listener = new MyKeyListener(this);
 		addKeyListener(listener);
 		setFocusable(true);
-		Vector<Bloque> vec = miJuego.getBloques();
+/*		Vector<Bloque> vec = miJuego.getBloques();
 		Iterator<Bloque> it = vec.iterator();
 		while(it.hasNext()) {
 			Bloque unBloque = it.next();
 			VistaBloque vBloque = new VistaBloque(unBloque);
 			vBloques.add(vBloque);
-		}
+		}*/
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) { 
 		Graphics2D g2 =(Graphics2D) g;
 		g2.clearRect(0, 0, Constantes.anchoPantalla, Constantes.altoPantalla);
+		
+		if(miJuego.faltaAgregarPieza()){
+			VistaBloque vBloque = new VistaBloque(miJuego.getPiezaParaAgregar().getBloque1());
+			vBloques.add(vBloque);
+			vBloque = new VistaBloque(miJuego.getPiezaParaAgregar().getBloque2());
+			vBloques.add(vBloque);
+			vBloque = new VistaBloque(miJuego.getPiezaParaAgregar().getBloque3());			
+			vBloques.add(vBloque);
+			miJuego.setPiezaParaAgregar(null);
+		}
 		
 		Iterator<VistaBloque> it = this.vBloques.iterator();
 		while(it.hasNext()) {
