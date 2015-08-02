@@ -9,8 +9,9 @@ public class main {
 		Juego juego = new Juego();
 		VistaJuego vg = new VistaJuego(juego);
 		JFrame frame = new JFrame("Columns");
-		frame.add(vg);		
-		frame.setSize(Constantes.anchoPantalla, Constantes.altoPantalla);
+		frame.add(vg);
+		//Harcodeo para que se vea bien
+		frame.setSize(Constantes.anchoPantalla  + 16 , Constantes.altoPantalla + 38);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

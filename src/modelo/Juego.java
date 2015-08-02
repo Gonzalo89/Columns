@@ -6,7 +6,7 @@ import java.util.Vector;
 public class Juego {
 	private Vector<Bloque> bloques;
 	private Pieza pieza;
-	
+
 	public Juego() {
 		bloques = new Vector<Bloque>();
 		this.piezaNueva();
@@ -15,60 +15,76 @@ public class Juego {
 
 	public Vector<Bloque> getBloques() {
 		return bloques;
-	}	
-	
+	}
+
 	public void piezaNueva() {
 		int randomPos = randomPos();
 		int randomNumColor1 = randomColor();
 		int randomNumColor2 = randomColor();
 		int randomNumColor3 = randomColor();
-		Bloque bloqueActual1 = new Bloque(randomPos, -2 * Constantes.altoBloque + 60, randomNumColor1);
-		Bloque bloqueActual2 = new Bloque(randomPos, -Constantes.altoBloque + 60, randomNumColor2);
-		Bloque bloqueActual3 = new Bloque(randomPos, 0 + 60, randomNumColor3);
+		Bloque bloqueActual1 = new Bloque(randomPos,
+				-2 * Constantes.altoBloque, randomNumColor1);
+		Bloque bloqueActual2 = new Bloque(randomPos, -Constantes.altoBloque,
+				randomNumColor2);
+		Bloque bloqueActual3 = new Bloque(randomPos, 0, randomNumColor3);
 		this.pieza = new Pieza(bloqueActual1, bloqueActual2, bloqueActual3);
 		bloques.add(bloqueActual1);
 		bloques.add(bloqueActual2);
-		bloques.add(bloqueActual3);		
+		bloques.add(bloqueActual3);
 	}
-	
+
 	private int randomPos() {
 		Random rnd = new Random();
-		int resultado = rnd.nextInt(Constantes.cantBloquesX) * Constantes.anchoBloque;		
+		int resultado = rnd.nextInt(Constantes.cantBloquesX)
+				* Constantes.anchoBloque;
 		return resultado;
 	}
-	
+
 	private int randomColor() {
 		Random rnd = new Random();
-		int resultado = rnd.nextInt(5);		
+		int resultado = rnd.nextInt(5);
 		return resultado;
 	}
-	
+
 	public void bajarBloque() {
 		if (pieza != null) {
-			pieza.getBloque1().bajar();
-			pieza.getBloque2().bajar();
-			pieza.getBloque3().bajar();			
+			int posFinal = pieza.getBloque3().getY() + 2
+					* Constantes.altoBloque;
+			if (posFinal <= Constantes.altoPantalla) {
+				pieza.getBloque1().bajar();
+				pieza.getBloque2().bajar();
+				pieza.getBloque3().bajar();
+			}
 		}
 	}
 
 	public void moverDerecha() {
-		pieza.getBloque1().derecha();
-		pieza.getBloque2().derecha();
-		pieza.getBloque3().derecha();
-		
+		if (pieza != null) {
+			int posFinal = pieza.getBloque1().getX() + 2 * Constantes.anchoBloque;
+			if (posFinal <= Constantes.anchoPantalla) {
+				pieza.getBloque1().derecha();
+				pieza.getBloque2().derecha();
+				pieza.getBloque3().derecha();
+			}
+		}
 	}
-	
+
 	public void moverIzquierda() {
-		pieza.getBloque1().izquierda();
-		pieza.getBloque2().izquierda();
-		pieza.getBloque3().izquierda();		
+		if (pieza != null) {
+			int posFinal = pieza.getBloque1().getX() - Constantes.anchoBloque;
+			if (posFinal >= 0) {
+				pieza.getBloque1().izquierda();
+				pieza.getBloque2().izquierda();
+				pieza.getBloque3().izquierda();
+			}
+		}
 	}
 
 	public void moverArriba() {
-		pieza.subir();		
+		pieza.subir();
 	}
 
 	public void moverAbajo() {
-		pieza.bajar();		
+		pieza.bajar();
 	}
 }
