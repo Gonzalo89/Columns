@@ -55,6 +55,12 @@ public class Bloque {
 		unBloque.setX(x);
 		unBloque.setY(y);
 	}
+	
+	public void set(Bloque unBloque) {
+		this.color = unBloque.getColor();
+		this.y = unBloque.getY();
+		this.x = unBloque.getX();
+	}
 
 	public void setColor(int color) {
 		this.color = color;

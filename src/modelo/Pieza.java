@@ -24,17 +24,16 @@ public class Pieza {
 	}
 	
 	public void bajar() {
-		Bloque aux = new Bloque();
-		bloque3.copiarA(aux);
-		bloque2.copiarA(bloque3);
-		bloque1.copiarA(bloque2);
-		aux.copiarA(bloque1);
+		int aux = bloque3.getColor();
+		bloque3.setColor(bloque2.getColor());
+		bloque2.setColor(bloque1.getColor());
+		bloque1.setColor(aux);		
 	}
 	
 	public void subir() {
-		Bloque aux = bloque1;
-		bloque1 = bloque2;
-		bloque2 = bloque3;
-		bloque3 = aux;		
+		int aux = bloque1.getColor();
+		bloque1.setColor(bloque2.getColor());
+		bloque2.setColor(bloque3.getColor());
+		bloque3.setColor(aux);			
 	}
 }

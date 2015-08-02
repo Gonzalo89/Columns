@@ -79,7 +79,7 @@ public class VistaJuego  extends JPanel{
 			this.miJuego.moverArriba();
 			break;	
 		case KeyEvent.VK_DOWN:
-			this.miJuego.moverAbajo();
+			this.miJuego.bajarBloque();
 			break;	
 		}
 	}

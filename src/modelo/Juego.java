@@ -22,9 +22,9 @@ public class Juego {
 		int randomNumColor1 = randomColor();
 		int randomNumColor2 = randomColor();
 		int randomNumColor3 = randomColor();
-		Bloque bloqueActual1 = new Bloque(randomPos, -2 * Constantes.altoBloque, randomNumColor1);
-		Bloque bloqueActual2 = new Bloque(randomPos, -Constantes.altoBloque, randomNumColor2);
-		Bloque bloqueActual3 = new Bloque(randomPos, 0, randomNumColor3);
+		Bloque bloqueActual1 = new Bloque(randomPos, -2 * Constantes.altoBloque + 60, randomNumColor1);
+		Bloque bloqueActual2 = new Bloque(randomPos, -Constantes.altoBloque + 60, randomNumColor2);
+		Bloque bloqueActual3 = new Bloque(randomPos, 0 + 60, randomNumColor3);
 		this.pieza = new Pieza(bloqueActual1, bloqueActual2, bloqueActual3);
 		bloques.add(bloqueActual1);
 		bloques.add(bloqueActual2);
