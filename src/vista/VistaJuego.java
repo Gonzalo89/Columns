@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import modelo.Bloque;
 import modelo.Constantes;
 import modelo.Juego;
+import modelo.Mapa;
 
 public class VistaJuego  extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -24,17 +25,10 @@ public class VistaJuego  extends JPanel{
 		KeyListener  listener = new MyKeyListener(this);
 		addKeyListener(listener);
 		setFocusable(true);
-/*		Vector<Bloque> vec = miJuego.getBloques();
-		Iterator<Bloque> it = vec.iterator();
-		while(it.hasNext()) {
-			Bloque unBloque = it.next();
-			VistaBloque vBloque = new VistaBloque(unBloque);
-			vBloques.add(vBloque);
-		}*/
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) { 
+	protected void paintComponent(Graphics g) {
 		Graphics2D g2 =(Graphics2D) g;
 		g2.clearRect(0, 0, Constantes.anchoPantalla, Constantes.altoPantalla);
 		
@@ -51,7 +45,11 @@ public class VistaJuego  extends JPanel{
 		Iterator<VistaBloque> it = this.vBloques.iterator();
 		while(it.hasNext()) {
 			VistaBloque vBloque = it.next();
-			vBloque.dibujar(g2);
+			if(!vBloque.estaEliminado()){
+				vBloque.dibujar(g2);
+			}else{
+				it.remove();	
+			}			
 		}
 	 }	
 	

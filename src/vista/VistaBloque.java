@@ -47,5 +47,9 @@ public class VistaBloque implements Dibujable{
 		g2.fillRect(this.bloque.getX() * Constantes.anchoBloque, this.bloque.getY() * Constantes.altoBloque, 
 				Constantes.anchoBloque, Constantes.altoBloque);	
 	}
+	
+	public boolean estaEliminado(){
+		return this.bloque.estaEliminado();
+	}
 
 }

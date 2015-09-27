@@ -4,6 +4,7 @@ public class Bloque {
 	private int x;
 	private int y;
 	private int color;
+	private boolean eliminado = false;
 	
 	public Bloque(int x, int y, int color) {
 		super();
@@ -36,7 +37,7 @@ public class Bloque {
 		return color;
 	}
 
-	public synchronized void bajar() {
+	public synchronized void bajar() { //Lo baja del Mapa y del bloque
 		Mapa miMapa = Mapa.getInstance();
 		miMapa.borrar(x, y);
 		miMapa.agregar(this, x, y + 1);
@@ -73,4 +74,11 @@ public class Bloque {
 		this.color = color;
 	}
 	
+	public boolean estaEliminado(){
+		return this.eliminado;
+	}
+	
+	public void eliminar(){
+		this.eliminado = true;
+	}
 }
