@@ -44,7 +44,8 @@ public class VistaBloque implements Dibujable{
 	public void dibujar(Graphics g) {
 		Graphics2D g2 =(Graphics2D) g;
 		g2.setColor(this.getColor(this.bloque.getColor()));		
-		g2.fillRect(this.bloque.getX(), this.bloque.getY(), Constantes.anchoBloque, Constantes.altoBloque);	
+		g2.fillRect(this.bloque.getX() * Constantes.anchoBloque, this.bloque.getY() * Constantes.altoBloque, 
+				Constantes.anchoBloque, Constantes.altoBloque);	
 	}
 
 }

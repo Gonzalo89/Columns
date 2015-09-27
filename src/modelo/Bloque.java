@@ -37,17 +37,24 @@ public class Bloque {
 	}
 
 	public synchronized void bajar() {
-		this.y += Constantes.altoBloque; 
-		
+		Mapa miMapa = Mapa.getInstance();
+		miMapa.borrar(x, y);
+		miMapa.agregar(this, x, y + 1);
+		this.y += 1;		
 	}
 
 	public void derecha() {
-		this.x += Constantes.anchoBloque;
-		
+		Mapa miMapa = Mapa.getInstance();
+		miMapa.borrar(x, y);
+		miMapa.agregar(this, x + 1, y);
+		this.x += 1;		
 	}
 
 	public void izquierda() {
-		this.x -= Constantes.anchoBloque;		
+		Mapa miMapa = Mapa.getInstance();
+		miMapa.borrar(x, y);
+		miMapa.agregar(this, x - 1, y);
+		this.x -= 1;		
 	}
 	
 	public void copiarA(Bloque unBloque) {
