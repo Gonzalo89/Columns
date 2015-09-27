@@ -43,104 +43,111 @@ public class Mapa {
 
 	// TODO borrar si hay tres bloques del mismo color en todas direcciones
 	public void actualizarMapa() {
-		boolean cambio;
+		boolean continuarGravedad;
+		boolean continuarEliminacion;
 
-		// Borra tres bloques horizontales del mismo color
-		for (int i = 0; i <= Constantes.cantBloquesX - 3; i++) {
-			for (int j = 0; j < Constantes.cantBloquesY; j++) {
-				if (matriz[i][j] != null && matriz[i + 1][j] != null
-						&& matriz[i + 2][j] != null) {
-					int color1 = matriz[i][j].getColor();
-					int color2 = matriz[i + 1][j].getColor();
-					int color3 = matriz[i + 2][j].getColor();
-
-					if (color1 == color2 && color2 == color3) {
-						matriz[i][j].eliminar();
-						matriz[i + 1][j].eliminar();
-						matriz[i + 2][j].eliminar();
-					}
-				}
-			}
-		}
-
-		// Borra tres bloques verticales del mismo color
-		for (int i = 0; i < Constantes.cantBloquesX; i++) {
-			for (int j = 0; j <= Constantes.cantBloquesY - 3; j++) {
-				if (matriz[i][j] != null && matriz[i][j + 1] != null
-						&& matriz[i][j + 2] != null) {
-					int color1 = matriz[i][j].getColor();
-					int color2 = matriz[i][j + 1].getColor();
-					int color3 = matriz[i][j + 2].getColor();
-
-					if (color1 == color2 && color2 == color3) {
-						matriz[i][j].eliminar();
-						matriz[i][j + 1].eliminar();
-						matriz[i][j + 2].eliminar();
-					}
-				}
-			}
-		}
-
-		// Borra tres bloques en diagonal de izquierda a derecha de arriba hacia
-		// abajo del mismo color
-		for (int i = 0; i <= Constantes.cantBloquesX - 3; i++) {
-			for (int j = 0; j <= Constantes.cantBloquesY - 3; j++) {
-				if (matriz[i][j] != null && matriz[i + 1][j + 1] != null
-						&& matriz[i + 2][j + 2] != null) {
-					int color1 = matriz[i][j].getColor();
-					int color2 = matriz[i + 1][j + 1].getColor();
-					int color3 = matriz[i + 2][j + 2].getColor();
-
-					if (color1 == color2 && color2 == color3) {
-						matriz[i][j].eliminar();
-						matriz[i + 1][j + 1].eliminar();
-						matriz[i + 2][j + 2].eliminar();
-					}
-				}
-			}
-		}
-
-		// Borra tres bloques en diagonal de izquierda a derecha de abajo hacia
-		// arriba del mismo color
-		for (int i = 0; i <= Constantes.cantBloquesX - 3; i++) {
-			for (int j = 2; j < Constantes.cantBloquesY; j++) {
-				if (matriz[i][j] != null && matriz[i + 1][j - 1] != null
-						&& matriz[i + 2][j - 2] != null) {
-					int color1 = matriz[i][j].getColor();
-					int color2 = matriz[i + 1][j - 1].getColor();
-					int color3 = matriz[i + 2][j - 2].getColor();
-
-					if (color1 == color2 && color2 == color3) {
-						matriz[i][j].eliminar();
-						matriz[i + 1][j - 1].eliminar();
-						matriz[i + 2][j - 2].eliminar();
-					}
-				}
-			}
-		}
-
-		// Pongo en null bloques eliminados
-		for (int i = 0; i < Constantes.cantBloquesX; i++) {
-			for (int j = 0; j < Constantes.cantBloquesY; j++) {
-				if (matriz[i][j] != null) {
-					if (matriz[i][j].estaEliminado()) {
-						matriz[i][j] = null;
-					}
-				}
-			}
-		}
-
-		// Baja bloques (Efecto gravedad)
 		do {
-			cambio = false;
+			continuarEliminacion = false;
+			// Borra tres bloques horizontales del mismo color
 			for (int i = 0; i <= Constantes.cantBloquesX - 3; i++) {
-				for (int j = Constantes.cantBloquesY - 1; j > 0; j--) {
-					if (matriz[i][j] == null && matriz[i][j - 1] != null) {
-						matriz[i][j - 1].bajar();
-						cambio = true;
+				for (int j = 0; j < Constantes.cantBloquesY; j++) {
+					if (matriz[i][j] != null && matriz[i + 1][j] != null
+							&& matriz[i + 2][j] != null) {
+						int color1 = matriz[i][j].getColor();
+						int color2 = matriz[i + 1][j].getColor();
+						int color3 = matriz[i + 2][j].getColor();
+
+						if (color1 == color2 && color2 == color3) {
+							matriz[i][j].eliminar();
+							matriz[i + 1][j].eliminar();
+							matriz[i + 2][j].eliminar();
+						}
 					}
 				}
 			}
-		} while (cambio);
+
+			// Borra tres bloques verticales del mismo color
+			for (int i = 0; i < Constantes.cantBloquesX; i++) {
+				for (int j = 0; j <= Constantes.cantBloquesY - 3; j++) {
+					if (matriz[i][j] != null && matriz[i][j + 1] != null
+							&& matriz[i][j + 2] != null) {
+						int color1 = matriz[i][j].getColor();
+						int color2 = matriz[i][j + 1].getColor();
+						int color3 = matriz[i][j + 2].getColor();
+
+						if (color1 == color2 && color2 == color3) {
+							matriz[i][j].eliminar();
+							matriz[i][j + 1].eliminar();
+							matriz[i][j + 2].eliminar();
+						}
+					}
+				}
+			}
+
+			// Borra tres bloques en diagonal de izquierda a derecha de arriba
+			// hacia
+			// abajo del mismo color
+			for (int i = 0; i <= Constantes.cantBloquesX - 3; i++) {
+				for (int j = 0; j <= Constantes.cantBloquesY - 3; j++) {
+					if (matriz[i][j] != null && matriz[i + 1][j + 1] != null
+							&& matriz[i + 2][j + 2] != null) {
+						int color1 = matriz[i][j].getColor();
+						int color2 = matriz[i + 1][j + 1].getColor();
+						int color3 = matriz[i + 2][j + 2].getColor();
+
+						if (color1 == color2 && color2 == color3) {
+							matriz[i][j].eliminar();
+							matriz[i + 1][j + 1].eliminar();
+							matriz[i + 2][j + 2].eliminar();
+						}
+					}
+				}
+			}
+
+			// Borra tres bloques en diagonal de izquierda a derecha de abajo
+			// hacia
+			// arriba del mismo color
+			for (int i = 0; i <= Constantes.cantBloquesX - 3; i++) {
+				for (int j = 2; j < Constantes.cantBloquesY; j++) {
+					if (matriz[i][j] != null && matriz[i + 1][j - 1] != null
+							&& matriz[i + 2][j - 2] != null) {
+						int color1 = matriz[i][j].getColor();
+						int color2 = matriz[i + 1][j - 1].getColor();
+						int color3 = matriz[i + 2][j - 2].getColor();
+
+						if (color1 == color2 && color2 == color3) {
+							matriz[i][j].eliminar();
+							matriz[i + 1][j - 1].eliminar();
+							matriz[i + 2][j - 2].eliminar();
+						}
+					}
+				}
+			}
+
+			// Pongo en null bloques eliminados
+			for (int i = 0; i < Constantes.cantBloquesX; i++) {
+				for (int j = 0; j < Constantes.cantBloquesY; j++) {
+					if (matriz[i][j] != null) {
+						if (matriz[i][j].estaEliminado()) {
+							continuarEliminacion = true;
+							matriz[i][j] = null;
+						}
+					}
+				}
+			}
+
+			// Baja bloques (Efecto gravedad)
+			do {
+				continuarGravedad = false;
+				for (int i = 0; i < Constantes.cantBloquesX; i++) {
+					for (int j = Constantes.cantBloquesY - 1; j > 0; j--) {
+						if (matriz[i][j] == null && matriz[i][j - 1] != null) {
+							matriz[i][j - 1].bajar();
+							continuarGravedad = true;
+						}
+					}
+				}
+			} while (continuarGravedad);
+		} while (continuarEliminacion);
 	}
 }

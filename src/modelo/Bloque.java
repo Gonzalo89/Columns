@@ -78,7 +78,7 @@ public class Bloque {
 		return this.eliminado;
 	}
 	
-	public void eliminar(){
+	public void eliminar(){ //Solo lo marca como eliminado
 		this.eliminado = true;
 	}
 }
